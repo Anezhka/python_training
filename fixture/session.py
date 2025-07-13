@@ -15,7 +15,7 @@ class SessionHelper:
         wd.find_element(By.NAME, "pass").click()
         wd.find_element(By.NAME, "pass").clear()
         wd.find_element(By.NAME, "pass").send_keys(password)
-        wd.find_element(By.CSS_SELECTOR, "input[type=\"submit\"]").click()
+        wd.find_element(By.CSS_SELECTOR, 'input[type="submit"]').click()
 
     def logout(self):
         wd = self.app.wd
@@ -32,7 +32,13 @@ class SessionHelper:
 
     def is_logged_in_as(self, username):
         wd = self.app.wd
-        return wd.find_element(By.XPATH, "//div/div[1]/form/b").text == "("+username+")"
+        return self.get_logged_user() == username
+
+    def get_logged_user(self):
+        wd = self.app.wd
+        return wd.find_element(By.XPATH, "//div/div[1]/form/b").text[1:-1] # обрезать скобки в начале и в конце
+
+
 
     def ensure_login(self, username, password):
         wd = self.app.wd

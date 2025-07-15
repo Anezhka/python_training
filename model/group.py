@@ -10,7 +10,7 @@ class Group:
 
     # как будет выглядеть объект в консоли, строковое исполнение - representation
     def __repr__(self):
-        return "%s:%s" % (self.id, self.name)
+        return "%s:%s;%s;%s" % (self.id, self.name, self.header, self.footer)
 
     # equals - сравнить объекты не по ссылкам
     def __eq__(self, other):
